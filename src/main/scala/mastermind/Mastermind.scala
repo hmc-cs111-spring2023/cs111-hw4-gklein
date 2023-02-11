@@ -24,19 +24,18 @@ def makeBoardFromColors(c1: Color, c2: Color, c3: Color, c4: Color): Board =
 
 /** Create a random board */
 def getRandomBoard(): Board =
-  makeBoardFomColors(getRandomColor(), getRandomColor(), getRandomColor(), getRandomColor())
+  makeBoardFromColors(getRandomColor(), getRandomColor(), getRandomColor(), getRandomColor())
 
 /** Play one round of the game */
 def playRound(board: Board): (Int, Int) =
-  val guess = readLine()
-  // var guesses = List[Color](' ', ' ', ' ', ' ')
-  // //for (i <- 1 to 4) {
-  // print("Enter a guess for spot 1: ")
-  // val guess = readLine()
-  //   // guesses.updated(i - 1, guess)
-  // //}
-  // println(guess)
-  (4, 0)
+  // Get user input.
+  var guesses = ""
+  for (i <- 1 to 4) {
+    print(s"Enter a guess for spot $i: ")
+    guesses = guesses + (readLine().charAt(0))
+  }
+
+  scoreGuess(board, guesses)
 
 /** Score a guess
   *
